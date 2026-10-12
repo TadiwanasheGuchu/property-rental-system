@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Organization extends Model
 {
-    protected $fillable = ['name', 'slug', 'email', 'phone', 'is_active'];
+    protected $fillable = ['name', 'slug', 'email', 'phone', 'currency', 'is_active'];
 
     protected function casts(): array
     {
         return ['is_active' => 'boolean'];
     }
 
+    public function properties(): HasMany
+    {
+        return $this->hasMany(Property::class);
+    }
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

@@ -42,5 +42,8 @@ class DatabaseSeeder extends Seeder
                 Role::where('name', $role)->value('id'),
             ]);
         }
+
+        // Must run last: it needs the organization and users above.
+        $this->call(PropertySeeder::class);
     }
 }
